@@ -1,0 +1,83 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-in-animation.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-from-bottom-animation.html">
+<dom-module id="iam-page">
+	<style is="custom-style">
+		#page_{
+		    height: 100vh !important;
+		    color: orange;
+	  	}
+	  	#the_{
+	  		text-align: center;
+	  	}
+	  	.small-text{
+		    font-size: 30px;
+		    font-weight: normal;
+	  	}
+		.overlay{
+		      width: 100%;
+		      height: 100%;
+		      background: rgba(0, 0, 0, .3);
+		      @apply(--layout-vertical);
+		      @apply(--layout-center-center);
+  		}
+  		.page{
+		    font-family: 'Roboto', 'Noto', sans-serif;
+		    padding: 0;
+		    font-size: 70px;
+		    font-weight: 700;
+			color: white;
+	  	}
+	</style>
+
+	<template>
+		
+		<section id="page_">
+
+            <div class="overlay page">
+            	<div id="contentMid">
+	                <div>polymer <span style="color: orange;"> single page application</span></div>
+					<div class="small-text" id="the_" >with scroll</div>
+				</div>
+            </div>
+
+      	</section>
+
+	</template>
+
+</dom-module>
+
+<script>
+
+    Polymer({
+      is: 'iam-page',
+      behaviors: [Polymer.NeonAnimationRunnerBehavior],
+      properties: {
+	      animationConfig: {
+	      	value: function(){
+	      		
+	      		return {
+	      			'in': {
+	      				name: 'fade-in-animation',
+	      				node: this.$.the_
+	      			},
+
+	              'contentSlide': { 
+	                name:'slide-from-bottom-animation',
+	                node: this.$.contentMid
+	              }
+	      		}
+	      	}
+	      }
+  		}	
+    });
+
+
+  document.addEventListener('WebComponentsReady', function () {
+
+ 	page.playAnimation('contentSlide')
+
+  });
+
+</script>

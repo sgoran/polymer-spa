@@ -1,0 +1,29 @@
+{
+  "name": "Portfolio",
+  "authors": [
+    "Goran Smiljanic <sgoran87@gmail.com>"
+  ],
+  "description": "Portfolio in polymer",
+  "main": "index.html",
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "polymer"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#^1.0.0",
+    "neon-elements": "PolymerElements/neon-elements#^1.0.0",
+    "page": "visionmedia/page.js#~1.6.4",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.1",
+    "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
+    "polymer": "Polymer/polymer#^1.2.0",
+    "iron-list": "PolymerElements/iron-list#^1.2.8"
+  },
+  "devDependencies": {
+    "web-component-tester": "^4.0.0"
+  }
+}

@@ -1,0 +1,180 @@
+  <link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../app-theme.html">
+
+
+<link rel="import" href="../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-from-top-animation.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animation-runner-behavior.html">
+
+<link rel="import" href="./about-page.html">
+<link rel="import" href="./iam-page.html">
+<link rel="import" href="./experience-page.html">
+<link rel="import" href="./contact-page.html">
+<link rel="import" href="./skills-page.html">
+<link rel="import" href="./work-page.html">
+
+<style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+<dom-module id="my-app">
+
+  <style is="custom-style">
+
+	:host{ 
+		height: 100%;
+        font-family: 'Roboto', 'Noto', sans-serif;
+	}
+
+
+ 	paper-scroll-header-panel{
+		overflow: hidden;
+ 		height: 100%;      	
+        background: url('https://images.unsplash.com/photo-1453060113865-968cea1ad53a?crop=entropy&fit=crop&fm=jpg&h=1075&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925') center/cover no-repeat;
+
+   		--paper-scroll-header-panel-condensed-header: {
+        	background-color: transparent;
+      	};
+   	}
+
+	paper-toolbar{
+
+		background: rgba(0,0,0, .3);
+
+        --paper-toolbar-title: {
+              font-weight: bold;
+              cursor: pointer;
+              pointer-events: all;
+        };
+
+	}
+
+  	.page{
+	    padding: 0;
+	    font-size: 54px;
+	    font-weight: 700;
+		text-transform: uppercase;
+	    color: white;
+  	}
+  
+	.title a{
+	    text-decoration: none;
+	    font-size: 20px;
+	    font-weight: 500;
+	    color: #fff;
+	    opacity: 0.8;
+      	pointer-events: auto;
+  	}
+
+  	#scroller {
+		position: absolute;
+		z-index: 1;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		width: 100%;
+		-webkit-transform: translateZ(0);
+		-moz-transform: translateZ(0);
+		-ms-transform: translateZ(0);
+		-o-transform: translateZ(0);
+		transform: translateZ(0);
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		-ms-text-size-adjust: none;
+		-o-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+
+   </style>
+
+  <template>
+
+  <paper-scroll-header-panel fixed >
+
+    <paper-toolbar>
+    
+      <div class="title" on-tap="goHome"> / </div>
+
+      <div class="spacer"></div>
+
+       <paper-tabs id="nav" class="top" on-iron-select="switchPages" attr-for-selected="data-attr">
+        
+        <paper-tab data-attr="about">ABOUT</paper-tab>
+        <paper-tab data-attr="experience">EXPERIENCE</paper-tab>
+        <paper-tab data-attr="work">WORK</paper-tab>
+        <paper-tab data-attr="skills">SKILLS</paper-tab>
+        <paper-tab data-attr="contact">CONTACT</paper-tab>
+        
+      </paper-tabs>
+    
+    </paper-toolbar>
+    
+    	<div id="scroller">
+    		
+
+	        <iam-page data-attr="iam"></iam-page>
+	      	<about-page data-attr="about" id="about"></about-page>
+            <experience-page data-attr="experience"></experience-page>
+	        <work-page data-attr="work"></work-page>
+            <skills-page data-attr="skills"></skills-page>
+	      	<contact-page data-attr="contact"></contact-page>
+	    
+    	</div>
+        
+  </paper-scroll-header-panel>
+
+
+
+  </template>
+  
+</dom-module>
+
+<script type="text/javascript" src="iscroll.js"></script>
+
+<script>
+    
+    var myScroll;
+    
+    Polymer({
+      is: 'my-app',
+      behaviors: [Polymer.NeonAnimationRunnerBehavior],
+      ready: function(){
+        document.querySelector('iam-page').playAnimation('contentSlide');
+        document.querySelector('my-app').playAnimation('headerSlide');
+      },
+      properties: {
+        animationConfig: {
+
+          value: function(){
+            return {
+              'headerSlide': { 
+                name:'slide-from-top-animation',
+                node: this.$.nav
+              }
+            }
+          }
+        }
+      } ,
+      goHome: function(){
+        this.$.nav.select('-');
+        myScroll.scrollToElement(document.querySelector('iam-page'))
+      },
+      switchPages: function(el){
+        if(this.$.nav.selected!=='blog')
+            myScroll.scrollToElement(document.querySelector(this.$.nav.selected+'-page'))
+      }
+    });
+
+      document.addEventListener('WebComponentsReady', function () {
+        myScroll = new IScroll('#mainContainer', { mouseWheel: true, click: true });
+      });
+
+</script>
