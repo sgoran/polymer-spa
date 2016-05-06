@@ -1,5 +1,4 @@
 p.sublime-workspace
-bower_components/*
 .DS_Store
 .bower.json.swp
 dev.html
