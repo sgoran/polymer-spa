@@ -7,3 +7,8 @@ I am using [iscroll](iscrolljs.com) for scroll.
 
 Demo [here](http://sgoran.github.io/polymer-spa)
 
+## Using and packing
+
+If you want to use this example, download and run bower install.
+I am using vulcanize to pack all imports from dev.html to index.html, 
+so you can use dev.html on your local environment
