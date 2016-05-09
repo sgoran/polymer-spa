@@ -5,3 +5,5 @@ It's a template of polymer application that's not using neon-animated-pages or i
 
 I am using [iscroll](iscrolljs.com) for scroll.
 
+Demo [here](http://sgoran.github.io/polymer-spa)
+
