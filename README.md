@@ -11,4 +11,6 @@ Demo [here](http://sgoran.github.io/polymer-spa)
 
 If you want to use this example, download and run bower install.
 I am using vulcanize to pack all imports from dev.html to index.html, 
-so you can use dev.html on your local environment
+so you can use dev.html on your local environment.
+
+You can also istall vulcanize and run vulcanize dev.html > index.html to pack all imports to index.html
