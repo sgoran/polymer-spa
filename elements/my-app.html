@@ -13,12 +13,12 @@
 <link rel="import" href="../bower_components/neon-animation/animations/slide-from-top-animation.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animation-runner-behavior.html">
 
-<link rel="import" href="./about-page.html">
-<link rel="import" href="./iam-page.html">
-<link rel="import" href="./experience-page.html">
-<link rel="import" href="./contact-page.html">
-<link rel="import" href="./skills-page.html">
-<link rel="import" href="./work-page.html">
+<link rel="import" href="./section-page.html">
+<link rel="import" href="./section_1-page.html">
+<link rel="import" href="./section_2-page.html">
+<link rel="import" href="./section_3-page.html">
+<link rel="import" href="./section_4-page.html">
+<link rel="import" href="./section_5-page.html">
 
 <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
 
@@ -107,11 +107,11 @@
 
        <paper-tabs id="nav" class="top" on-iron-select="switchPages" attr-for-selected="data-attr">
         
-        <paper-tab data-attr="about">ABOUT</paper-tab>
-        <paper-tab data-attr="experience">EXPERIENCE</paper-tab>
-        <paper-tab data-attr="work">WORK</paper-tab>
-        <paper-tab data-attr="skills">SKILLS</paper-tab>
-        <paper-tab data-attr="contact">CONTACT</paper-tab>
+        <paper-tab data-attr="section_1">SECTION 1</paper-tab>
+        <paper-tab data-attr="section_2">SECTION 2</paper-tab>
+        <paper-tab data-attr="section_3">SECTION 3</paper-tab>
+        <paper-tab data-attr="section_4">SECTION 4</paper-tab>
+        <paper-tab data-attr="section_5">SECTION 5</paper-tab>
         
       </paper-tabs>
     
@@ -120,12 +120,12 @@
     	<div id="scroller">
     		
 
-	        <iam-page data-attr="iam"></iam-page>
-	      	<about-page data-attr="about" id="about"></about-page>
-            <experience-page data-attr="experience"></experience-page>
-	        <work-page data-attr="work"></work-page>
-            <skills-page data-attr="skills"></skills-page>
-	      	<contact-page data-attr="contact"></contact-page>
+	        <section-page data-attr="section"></section-page>
+	      	<section_1-page data-attr="section_1" id="section_1"></section_1-page>
+            <section_2-page data-attr="section_2"></section_2-page>
+	        <section_3-page data-attr="section_3"></section_3-page>
+            <section_4-page data-attr="section_4"></section_4-page>
+	      	<section_5-page data-attr="section_5"></section_5-page>
 	    
     	</div>
         
@@ -147,8 +147,7 @@
       is: 'my-app',
       behaviors: [Polymer.NeonAnimationRunnerBehavior],
       ready: function(){
-        document.querySelector('iam-page').playAnimation('contentSlide');
-        document.querySelector('my-app').playAnimation('headerSlide');
+        document.querySelector('section-page').playAnimation('contentSlide');
       },
       properties: {
         animationConfig: {
@@ -165,7 +164,7 @@
       } ,
       goHome: function(){
         this.$.nav.select('-');
-        myScroll.scrollToElement(document.querySelector('iam-page'))
+        myScroll.scrollToElement(document.querySelector('section-page'))
       },
       switchPages: function(el){
         if(this.$.nav.selected!=='blog')
